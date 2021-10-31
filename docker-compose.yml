@@ -6,7 +6,8 @@ services:
       - 'mariadb_data:/bitnami/mariadb'
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
-      - ALLOW_EMPTY_PASSWORD=yes
+      # - ALLOW_EMPTY_PASSWORD=yes
+      - /path/to/mariadb-persistence:/bitnami/mariadb
       - MARIADB_USER=bn_redmine
       - MARIADB_DATABASE=bitnami_redmine
   redmine:
@@ -19,13 +20,14 @@ services:
       - mariadb
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
-      - ALLOW_EMPTY_PASSWORD=yes
+      # - ALLOW_EMPTY_PASSWORD=yes
+      - /path/to/redmine-persistence:/bitnami/redmine
       - REDMINE_DATABASE_HOST=mariadb
       - REDMINE_DATABASE_PORT_NUMBER=3306
       - REDMINE_DATABASE_USER=bn_redmine
       - REDMINE_DATABASE_NAME=bitnami_redmine
-volumes:
-  mariadb_data:
-    driver: local
-  redmine_data:
-    driver: local
+#volumes:
+#  mariadb_data:
+#    driver: local
+#  redmine_data:
+#    driver: local
